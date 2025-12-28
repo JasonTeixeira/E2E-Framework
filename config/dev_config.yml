@@ -1,0 +1,64 @@
+# Development Environment Configuration
+# QA Automation Framework
+
+browser:
+  type: chrome  # chrome, firefox, edge
+  headless: false  # Set to true for CI/CD
+  timeout: 15
+  page_load_timeout: 30
+  implicit_wait: 10
+
+app:
+  url: https://www.saucedemo.com  # Demo application for testing
+  env: dev
+  base_url: https://www.saucedemo.com
+  api_base_url: https://www.saucedemo.com/api
+
+selenium:
+  implicit_wait: 10
+  explicit_wait: 15
+  page_load_timeout: 30
+  remote_url: null  # Set for Selenium Grid: http://localhost:4444/wd/hub
+
+reporting:
+  screenshots_on_failure: true
+  video_recording: false
+  allure_results_dir: allure-results
+  html_report: reports/report.html
+
+execution:
+  parallel: false  # Enable for parallel execution
+  workers: 4  # Number of parallel workers
+  retry_failed: true
+  max_retries: 2
+
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  file: logs/test_execution.log
+  console: true
+  format: "%(asctime)s [%(levelname)s] %(message)s"
+
+# Test credentials (use environment variables in production!)
+credentials:
+  standard_user:
+    username: standard_user
+    password: secret_sauce
+  locked_user:
+    username: locked_out_user
+    password: secret_sauce
+  problem_user:
+    username: problem_user
+    password: secret_sauce
+
+# Timeouts for specific operations
+timeouts:
+  short: 5
+  medium: 15
+  long: 30
+  api_timeout: 10
+
+# Feature flags
+features:
+  enable_visual_regression: false
+  enable_api_mocking: false
+  enable_performance_monitoring: true
